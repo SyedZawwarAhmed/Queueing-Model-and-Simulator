@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="container">
       <div>
-        <Link to={"/priority"}>
+        <Link to={"/select-model"}>
           <Button title={"Simulator"} onClick={() => {}} />
         </Link>
         <Link to={"/queueing-model"}>
