@@ -5,11 +5,12 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Priority from "./pages/Priority/index.tsx";
 import Simulator from "./pages/Simulator/index.tsx";
 import QueueingModel from "./pages/QueueingModel/index.tsx";
+import App from "./App.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <App />,
   },
   {
     path: "/priority",
