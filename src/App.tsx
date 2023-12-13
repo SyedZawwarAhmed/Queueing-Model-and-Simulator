@@ -8,10 +8,10 @@ function App() {
     <div className="container">
       <div>
         <Link to={"/priority"}>
-          <Button title={"Simulator"} />
+          <Button title={"Simulator"} onClick={() => {}} />
         </Link>
         <Link to={"/queueing-model"}>
-          <Button title={"Queueing Model"} />
+          <Button title={"Queueing Model"} onClick={() => {}} />
         </Link>
       </div>
     </div>
