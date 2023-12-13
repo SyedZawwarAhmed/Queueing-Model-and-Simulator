@@ -1,5 +1,5 @@
 function Button({ title }: any) {
-  return <button>{title}</button>;
+  return <button style={{ margin: "1rem", fontSize: "2rem" }}>{title}</button>;
 }
 
 export default Button;

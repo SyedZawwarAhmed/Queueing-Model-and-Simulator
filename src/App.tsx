@@ -1,15 +1,20 @@
 import React from "react";
 import Button from "./components/Button";
 import { Link } from "react-router-dom";
+import "./globalStyles.css";
 
 function App() {
   return (
-    <>
-      <Link to={"/priority"}>
-        <Button title={"Simulator"} />
-      </Link>
-      <Button title={"Queueing Model"} />
-    </>
+    <div className="container">
+      <div>
+        <Link to={"/priority"}>
+          <Button title={"Simulator"} />
+        </Link>
+        <Link to={"/queueing-model"}>
+          <Button title={"Queueing Model"} />
+        </Link>
+      </div>
+    </div>
   );
 }
 

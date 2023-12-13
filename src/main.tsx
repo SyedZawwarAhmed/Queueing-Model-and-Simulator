@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     element: <Simulator />,
   },
   {
-    path: "/priority",
+    path: "/queueing-model",
     element: <QueueingModel />,
   },
 ]);
