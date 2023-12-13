@@ -10,10 +10,10 @@ function Priority() {
       <h1>Priority</h1>
       <div>
         <Link to={"/simulator"} state={{ isPriorityEnabled: true }}>
-          <Button title={"Yes"} />
+          <Button title={"Yes"} onClick={() => {}} />
         </Link>
         <Link to={"/simulator"} state={{ isPriorityEnabled: false }}>
-          <Button title={"No"} />
+          <Button title={"No"} onClick={() => {}} />
         </Link>
       </div>
     </div>
