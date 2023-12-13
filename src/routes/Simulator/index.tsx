@@ -32,9 +32,6 @@ function Simulator() {
   const patients = arrivalTimes.arrivalTimes.map((_, i) => new Patient(i + 1, arrivalTimes.arrivalTimes[i], serviceTimes[i],
       priorities[i], serviceTimes[i]));
 
-
-
-
   return (
     <div className="container">
       <div style={{ display: "flex" }}>
