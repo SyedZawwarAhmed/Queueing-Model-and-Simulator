@@ -7,6 +7,7 @@ import { Patient, serve_highest_priority_patient } from "../../modules/simulator
 import Button from "../../components/Button";
 import Table from "../../components/Table";
 import Title from "../../components/Title";
+import PerformanceMeasures from "../../components/PerformanceMeasures";
 
 function Simulator() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function Simulator() {
   const b = 3;
 
   const arrivalTimes = getArrivalTimes(arrivalMean);
+  console.log("🚀 ~ file: index.tsx:28 ~ Simulator ~ arrivalTimes:", arrivalTimes)
   const serviceTimes = getServiceTimes(
     arrivalTimes.arrivalTimes.length, serviceMean);
   const priorities = isPriorityEnabled ? getPriorities(
@@ -46,6 +48,7 @@ function Simulator() {
         setSimData(patients);
       }} />
       {simData.length ? <Table simData={simData} isPriorityEnabled={isPriorityEnabled}></Table> : <></>}
+      {simData.length && <PerformanceMeasures data={simData} />}
     </div>
   );
 }
