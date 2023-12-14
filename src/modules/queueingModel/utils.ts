@@ -1,24 +1,25 @@
+type ObjectWithNumbers = { [key: string]: number };
 // Queuing Models
 
 let arrivalRate, serviceRate, min, max;
 
 // M/M/1 Queue Model
-function calculateMM1(lambda, mew) {
+export function calculateMM1(lambda, mew) {
   arrivalRate = lambda
   serviceRate = mew
   const utilization = arrivalRate / serviceRate;
-  const averageQueueLengthQueue = Math.pow(utilization,2) / (1 - utilization)
-  const averageWaitingTimeQueue = averageQueueLengthQueue/arrivalRate
+  const averageQueueLengthQueue = Math.pow(arrivalRate,2) / (serviceRate*(serviceRate - arrivalRate))
+  const averageWaitingTimeQueue =  arrivalRate / (serviceRate*(serviceRate - arrivalRate))
   const averageWaitingTimeSystem = averageWaitingTimeQueue + (1/serviceRate)
   const averageQueueLengthSystem = arrivalRate*averageWaitingTimeSystem;
 
-  return {
+  return absoluteValues( {
     utilization,
-    averageQueueLengthSystem,
-    averageWaitingTimeSystem,
     averageQueueLengthQueue,
-    averageWaitingTimeQueue, 
-  };
+    averageWaitingTimeQueue,
+    averageWaitingTimeSystem,
+    averageQueueLengthSystem,
+  });
 }
 
 function factorial(n) {
@@ -43,29 +44,29 @@ function calculatePo(c, rho){
 }
 
 // M/M/2 Queue Model
-function calculateMM2(lamda, mew) {
+export function calculateMMC(lamda, mew, servers) {
   arrivalRate = lamda
   serviceRate = mew
   // Calculate utilization
-  const utilization = arrivalRate / (2 * serviceRate);
+  const utilization = arrivalRate / (servers * serviceRate);
 
   // Calculate average queue length and waiting 
-  const averageQueueLengthQueue = (calculatePo(2, utilization)*Math.pow((arrivalRate/serviceRate),2)*utilization)/(factorial(2)*Math.pow(1-utilization, 2));
+  const averageQueueLengthQueue = (calculatePo(servers, utilization)*Math.pow((arrivalRate/serviceRate),servers)*utilization)/(factorial(servers)*Math.pow(1-utilization, 2));
   const averageWaitingTimeQueue = averageQueueLengthQueue / arrivalRate
   const averageWaitingTimeSystem = averageWaitingTimeQueue + (1/serviceRate)
   const averageQueueLengthSystem = arrivalRate*averageWaitingTimeSystem;
 
-  return {
+  return absoluteValues( {
     utilization,
-    averageQueueLengthSystem,
-    averageWaitingTimeSystem,
     averageQueueLengthQueue,
     averageWaitingTimeQueue,
-  };
+    averageWaitingTimeSystem,
+    averageQueueLengthSystem,
+  });
 }
 
 // M/G/1 Queue Model
-function calculateMG1(lambda, minVal, maxVal) {
+export function calculateMG1(lambda, minVal, maxVal) {
   arrivalRate = lambda
   min = minVal
   max = maxVal
@@ -77,17 +78,17 @@ function calculateMG1(lambda, minVal, maxVal) {
   const averageWaitingTimeSystem = averageWaitingTimeQueue + (1/serviceRate)
   const averageQueueLengthSystem = averageWaitingTimeSystem*arrivalRate
 
-  return {
+  return absoluteValues( {
     utilization,
     averageQueueLengthQueue,
     averageWaitingTimeQueue,
-    averageQueueLengthSystem,
     averageWaitingTimeSystem,
-  };
+    averageQueueLengthSystem,
+  });
 }
 
 // M/G/2 Queue Model
-function calculateMG2(lambda, minVal, maxVal) {
+export function calculateMGC(lambda, minVal, maxVal, servers) {
   arrivalRate = lambda
   min = minVal
   max = maxVal
@@ -95,29 +96,29 @@ function calculateMG2(lambda, minVal, maxVal) {
   const cs = (Math.pow(min-max,2)/12)/Math.pow(1/serviceRate, 2)
 
   // Calculate utilization
-  const utilization = arrivalRate / (2 * serviceRate);
+  const utilization = arrivalRate / (servers * serviceRate);
 
   // Estimate the average length of queue for G/G/2 model
-  const expaverageQueueLengthQueue = (calculatePo(2, utilization)*Math.pow((arrivalRate/serviceRate),2)*utilization)/(factorial(2)*Math.pow(1-utilization, 2));
+  const expaverageQueueLengthQueue = (calculatePo(servers, utilization)*Math.pow((arrivalRate/serviceRate),servers)*utilization)/(factorial(servers)*Math.pow(1-utilization, 2));
   const averageWaitingTimeQueue = (expaverageQueueLengthQueue / arrivalRate)*((1+cs)/2)
 
   const averageQueueLengthQueue = averageWaitingTimeQueue * arrivalRate
   const averageWaitingTimeSystem = averageWaitingTimeQueue + (1/serviceRate)
   const averageQueueLengthSystem = arrivalRate * averageWaitingTimeSystem
 
-  return {
+  return absoluteValues( {
     utilization,
     averageQueueLengthQueue,
-    averageQueueLengthSystem,
-    averageWaitingTimeSystem,
     averageWaitingTimeQueue,
-  };
+    averageWaitingTimeSystem,
+    averageQueueLengthSystem,
+  });
 }
 
 // G/G/1 Queue Model
-function calculateGG1(lambda, mew, arrivalVariance, serviceVariance) {
-  arrivalRate = 1/lambda
-  serviceRate = 1/mew
+export function calculateGG1(arrivalMean, serviceMean, arrivalVariance, serviceVariance) {
+  arrivalRate = 1/arrivalMean
+  serviceRate = 1/serviceMean
   const ca = arrivalVariance/(Math.pow(1/arrivalRate, 2))
   const cs = serviceVariance/(Math.pow(1/serviceRate, 2))
 
@@ -129,38 +130,52 @@ function calculateGG1(lambda, mew, arrivalVariance, serviceVariance) {
   const averageWaitingTimeSystem = averageWaitingTimeQueue + (1/serviceRate)
   const averageQueueLengthSystem = arrivalRate*averageWaitingTimeSystem
 
-  return {
+  return absoluteValues( {
     utilization,
     averageQueueLengthQueue,
     averageWaitingTimeQueue,
     averageWaitingTimeSystem,
-    averageQueueLengthSystem
-  };
+    averageQueueLengthSystem,
+  });
 }
 
 // G/G/2 Queue Model
-function calculateGG2(arrivalMean, serviceMean, arrivalVariance, serviceVariance) {
+export  function calculateGGC(arrivalMean, serviceMean, arrivalVariance, serviceVariance, servers) {
   arrivalRate = 1/arrivalMean
   serviceRate = 1/serviceMean
   const ca = arrivalVariance/(Math.pow(1/arrivalRate, 2))
   const cs = serviceVariance/(Math.pow(1/serviceRate, 2))
 
   // Calculate utilization
-  const utilization = arrivalRate / (2 * serviceRate);
+  const utilization = arrivalRate / (servers * serviceRate);
 
   // Estimate the second moment of service time for M/M/2 model
-  const expaverageQueueLengthQueue = (calculatePo(2, utilization)*Math.pow((arrivalRate/serviceRate),2)*utilization)/(factorial(2)*Math.pow(1-utilization, 2));
+  const expaverageQueueLengthQueue = (calculatePo(servers, utilization)*Math.pow((arrivalRate/serviceRate),servers)*utilization)/(factorial(servers)*Math.pow(1-utilization, 2));
 
   const averageQueueLengthQueue = expaverageQueueLengthQueue*((ca+cs)/2)
   const averageWaitingTimeQueue = averageQueueLengthQueue/arrivalRate
   const averageWaitingTimeSystem = averageWaitingTimeQueue + (1/serviceRate)
   const averageQueueLengthSystem = arrivalRate*averageWaitingTimeSystem
 
-  return {
+  return absoluteValues( {
     utilization,
     averageQueueLengthQueue,
     averageWaitingTimeQueue,
     averageWaitingTimeSystem,
     averageQueueLengthSystem,
-  };
+  });
 }
+
+export function absoluteValues(inputObject: ObjectWithNumbers): ObjectWithNumbers {
+    const resultObject: ObjectWithNumbers = {};
+  
+    for (const key in inputObject) {
+      if (inputObject.hasOwnProperty(key)) {
+        const originalValue = inputObject[key];
+        const absoluteValue = Math.abs(originalValue);
+        resultObject[key] = absoluteValue;
+      }
+    }
+  
+    return resultObject;
+  }
