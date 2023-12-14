@@ -11,7 +11,6 @@ import {
   calculateMGC,
   calculateGG1,
   calculateGGC,
-  absoluteValues,
 } from "../../modules/queueingModel/utils";
 import QueuingTable from "../../components/QueueingTable";
 
