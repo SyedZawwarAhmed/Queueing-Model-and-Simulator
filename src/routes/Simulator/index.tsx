@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "../../globalStyles.css";
 import Input from "../../components/Input";
 import { getArrivalTimes, getPriorities, getServiceTimes } from "../../modules/simulator/utils";
 import { Patient, serve_highest_priority_patient } from "../../modules/simulator/patient";
 import Button from "../../components/Button";
+import Table from "../../components/Table";
 
 function Simulator() {
   const location = useLocation();
@@ -13,6 +14,7 @@ function Simulator() {
   const [arrivalMean, setArrivalMean] = useState();
   const [serviceMean, setServiceMean] = useState();
   const [numberOfServers, setNumberOfServers] = useState();
+  const [simData, setSimData] = useState([]);
 
   const meanArrivalNumber = 2.25;
   const meanServiceNumber = 8.98;
@@ -29,8 +31,6 @@ function Simulator() {
   const priorities = getPriorities(
       arrivalTimes.arrivalTimes.length, A, M, Z, C, a, b);
 
-  const patients = arrivalTimes.arrivalTimes.map((_, i) => new Patient(i + 1, arrivalTimes.arrivalTimes[i], serviceTimes[i],
-      priorities[i], serviceTimes[i]));
 
   return (
     <div className="container">
@@ -38,12 +38,15 @@ function Simulator() {
         <Input label="Arrival Mean" setValue={setArrivalMean} />
 
         <Input label="Service Mean" setValue={setServiceMean} />
-
         <Input label="Number of Servers" setValue={setNumberOfServers} />
       </div>
       <Button title="Simulate" onClick={() => {
+        const patients = arrivalTimes.arrivalTimes.map((_, i) => new Patient(i + 1, arrivalTimes.arrivalTimes[i], serviceTimes[i],
+          priorities[i], serviceTimes[i]));
           serve_highest_priority_patient(patients);
+          setSimData(patients);
       }} />
+      {simData.length ? <Table simData={simData} isPriorityEnabled={isPriorityEnabled}></Table> : <></>}
     </div>
   );
 }

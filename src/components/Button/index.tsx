@@ -1,6 +1,6 @@
 interface ButtonProps {
   title: string;
-  onClick: any;
+  onClick?: any;
 }
 
 function Button({ title, onClick }: ButtonProps) {
