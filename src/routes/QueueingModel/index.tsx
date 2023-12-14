@@ -13,6 +13,7 @@ import {
   calculateGGC,
 } from "../../modules/queueingModel/utils";
 import QueuingTable from "../../components/QueueingTable";
+import Loader from "../../components/Loader/Index";
 
 function QueueingModel() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function QueueingModel() {
   const [arrivalVariance, setArrivalVariance] = useState();
   const [serviceVariance, setServiceVariance] = useState();
   const [modelData, setModelData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const generateQueuingModel = () => {
     if (model == Model.MMN) {
@@ -94,8 +96,15 @@ function QueueingModel() {
         )}
         <Input label="Number of Servers" setValue={setNumberOfServers} />
       </div>
-      <Button title="Generate" onClick={generateQueuingModel} />
+      <Button title="Generate" onClick={() => {
+        setIsLoading(true);
+        setTimeout(() => setIsLoading(false), 2000);
+        generateQueuingModel()
+      }
+      } />
+      {isLoading ? <Loader />: <>
       {modelData ? <QueuingTable simData={modelData}/> : <></>}
+      </>}
     </div>
   );
 }
