@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { Model } from "../../constants/enums";
+import Title from "../../components/Title";
 import {
   calculateMM1,
   calculateMMC,
@@ -10,7 +11,6 @@ import {
   calculateMGC,
   calculateGG1,
   calculateGGC,
-  absoluteValues,
 } from "../../modules/queueingModel/utils";
 import QueuingTable from "../../components/QueueingTable";
 
@@ -72,7 +72,7 @@ function QueueingModel() {
 
   return (
     <div className="container">
-      <h1>{model}</h1>
+      <Title>{model}</Title>
       <div className="grid grid-cols-3 gap-4">
         <Input label="Arrival Mean" setValue={setArrivalMean} />
 

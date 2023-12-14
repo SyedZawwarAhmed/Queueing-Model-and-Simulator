@@ -4,7 +4,7 @@ export const isPriorityEnable = {
 }
 
 export const Model = {
-    MMN: "MMN",
-    MGN: "MGN",
-    GGN: "GGN"
+    MMN: "M/M/N",
+    MGN: "M/G/N",
+    GGN: "G/G/N"
 }

@@ -2,11 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../../components/Button'
 import { Model } from '../../constants/enums'
+import Title from '../../components/Title'
 
 function SelectQueueingModel() {
     return (
         <div className="container">
-            <h1 className="mb-3">Select Model</h1>
+            <Title>Select Queueing Model</Title>
             <div className="flex">
                 <Link to="/queueing-model" state={{ model: Model.MMN }}>
                     <Button title={"M/M/N"} />
