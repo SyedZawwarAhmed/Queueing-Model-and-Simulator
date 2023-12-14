@@ -26,14 +26,13 @@ function Simulator() {
 
   const arrivalTimes = getArrivalTimes(arrivalMean);
   const serviceTimes = getServiceTimes(
-      arrivalTimes.arrivalTimes.length, serviceMean);
-  const priorities = getPriorities(
-      arrivalTimes.arrivalTimes.length, A, M, Z, C, a, b);
-
+    arrivalTimes.arrivalTimes.length, serviceMean);
+  const priorities = isPriorityEnabled ? getPriorities(
+    arrivalTimes.arrivalTimes.length, A, M, Z, C, a, b) : Array.from({ length: arrivalTimes.arrivalTimes.length }, () => 1);
 
   return (
     <div className="container">
-      <Title>{model}</Title>
+      <Title>{`${model} with${!isPriorityEnabled ? "out" : ""} Priority`}</Title>
       <div style={{ display: "flex" }}>
         <Input label="Arrival Mean" setValue={setArrivalMean} />
 
@@ -43,8 +42,8 @@ function Simulator() {
       <Button title="Simulate" onClick={() => {
         const patients = arrivalTimes.arrivalTimes.map((_, i) => new Patient(i + 1, arrivalTimes.arrivalTimes[i], serviceTimes[i],
           priorities[i], serviceTimes[i]));
-          serve_highest_priority_patient(patients);
-          setSimData(patients);
+        serve_highest_priority_patient(patients);
+        setSimData(patients);
       }} />
       {simData.length ? <Table simData={simData} isPriorityEnabled={isPriorityEnabled}></Table> : <></>}
     </div>

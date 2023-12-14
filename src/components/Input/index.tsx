@@ -5,6 +5,9 @@ function Input({ label, setValue }) {
     if (e.code === 'Minus') {
       e.preventDefault();
     }
+    // if (Number(e.target.value) === 0) {
+    //   e.preventDefault();
+    // }
   };
 
   return (
