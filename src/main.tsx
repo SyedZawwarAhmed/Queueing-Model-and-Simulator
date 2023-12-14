@@ -6,11 +6,16 @@ import Priority from "./routes/Priority/index.tsx";
 import Simulator from "./routes/Simulator/index.tsx";
 import QueueingModel from "./routes/QueueingModel/index.tsx";
 import App from "./App.tsx";
+import SelectModel from "./routes/SelectModel/index.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/select-model",
+    element: <SelectModel />,
   },
   {
     path: "/priority",
