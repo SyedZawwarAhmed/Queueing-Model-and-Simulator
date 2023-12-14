@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import Button from "../../components/Button";
 import "../../globalStyles.css";
+import Title from "../../components/Title";
 
 function Priority() {
   const { state } = useLocation();
@@ -9,7 +10,7 @@ function Priority() {
   return (
     <div className="container">
       {" "}
-      <h1>Priority</h1>
+      <Title>Priority</Title>
       <div>
         <Link to={"/simulator"} state={{ isPriorityEnabled: true, model: state.model }}>
           <Button title={"Yes"} onClick={() => {}} />

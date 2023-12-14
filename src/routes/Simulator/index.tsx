@@ -6,18 +6,17 @@ import { getArrivalTimes, getPriorities, getServiceTimes } from "../../modules/s
 import { Patient, serve_highest_priority_patient } from "../../modules/simulator/patient";
 import Button from "../../components/Button";
 import Table from "../../components/Table";
+import Title from "../../components/Title";
 
 function Simulator() {
   const location = useLocation();
-  const { isPriorityEnabled } = location.state;
+  const { isPriorityEnabled, model } = location.state;
 
   const [arrivalMean, setArrivalMean] = useState();
   const [serviceMean, setServiceMean] = useState();
   const [numberOfServers, setNumberOfServers] = useState();
   const [simData, setSimData] = useState([]);
 
-  const meanArrivalNumber = 2.25;
-  const meanServiceNumber = 8.98;
   const A = 55;
   const M = 1994;
   const Z = 10112166;
@@ -34,6 +33,7 @@ function Simulator() {
 
   return (
     <div className="container">
+      <Title>{model}</Title>
       <div style={{ display: "flex" }}>
         <Input label="Arrival Mean" setValue={setArrivalMean} />
 
