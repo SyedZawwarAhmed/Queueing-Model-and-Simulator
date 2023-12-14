@@ -33,7 +33,7 @@ const QueuingTable = ({ simData }) => {
               : "0"}
           </td>
           <td className="font-semibold border text-center px-2 py-3">
-            {simData.averageQueueLengthQueue ? simData.averageQueueLengthQueue : "0"}
+            {simData.averageQueueLengthQueue ? simData.averageQueueLengthQueue.toFixed(2) : "0"}
           </td>
           <td className="font-semibold border text-center px-2 py-3">
             {simData.averageWaitingTimeSystem
