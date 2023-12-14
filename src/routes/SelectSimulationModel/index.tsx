@@ -1,9 +1,9 @@
 import React from "react";
-import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 import { Model } from "../../constants/enums";
+import Button from "../../components/Button";
 
-function SelectModel() {
+function SelectSimulationModel() {
   return (
     <div className="container">
       <h1 className="mb-3">Select Model</h1>
@@ -22,4 +22,4 @@ function SelectModel() {
   );
 }
 
-export default SelectModel;
+export default SelectSimulationModel;

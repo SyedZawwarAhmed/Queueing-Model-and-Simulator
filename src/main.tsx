@@ -4,9 +4,10 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Priority from "./routes/Priority/index.tsx";
 import Simulator from "./routes/Simulator/index.tsx";
+import SelectSimulationModel from "./routes/SelectSimulationModel/index.tsx";
 import QueueingModel from "./routes/QueueingModel/index.tsx";
 import App from "./App.tsx";
-import SelectModel from "./routes/SelectModel/index.tsx";
+import SelectQueueingModel from "./routes/SelectQueueingModel/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -14,8 +15,13 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/select-model",
-    element: <SelectModel />,
+    path: "/select-simulation-model",
+    element: <SelectSimulationModel />,
+  },
+  
+  {
+    path: "/select-queueing-model",
+    element: <SelectQueueingModel />,
   },
   {
     path: "/priority",

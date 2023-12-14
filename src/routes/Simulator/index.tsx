@@ -23,9 +23,9 @@ function Simulator() {
   const a = 1;
   const b = 3;
 
-  const arrivalTimes = getArrivalTimes(meanArrivalNumber);
+  const arrivalTimes = getArrivalTimes(arrivalMean);
   const serviceTimes = getServiceTimes(
-      arrivalTimes.arrivalTimes.length, meanServiceNumber);
+      arrivalTimes.arrivalTimes.length, serviceMean);
   const priorities = getPriorities(
       arrivalTimes.arrivalTimes.length, A, M, Z, C, a, b);
 
