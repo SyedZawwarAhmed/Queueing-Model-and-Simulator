@@ -118,7 +118,7 @@ function Simulator() {
           ) : (
             <></>
           )}
-          {simData.length && (
+          {simData.length ? (
             <>
               {" "}
               <PerformanceMeasures data={simData} />{" "}
@@ -155,15 +155,15 @@ function Simulator() {
                 }}
               />
             </>
-          )}
-          {showAveragePerformanceMeasures && (
+          ) : null}
+          {showAveragePerformanceMeasures ? (
             <AveragePerformanceMeasures
               averageWaitTimeList={averageWaitTimeList}
               averageResponseTimeList={averageResponseTimeList}
               averageTurnAroundTimeList={averageTurnAroundTimeList}
             />
-          )}
-          {simData.length && <GanttChart data={simData} />}
+          ) : null}
+          {simData.length ? (<GanttChart data={simData} />) : null}
         </>
       )}
     </div>
