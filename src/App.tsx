@@ -7,10 +7,10 @@ function App() {
   return (
     <div className="container">
       <div>
-        <Link to={"/select-model"}>
+        <Link to={"/select-simulation-model"}>
           <Button title={"Simulator"} onClick={() => {}} />
         </Link>
-        <Link to={"/queueing-model"}>
+        <Link to={"/select-queueing-model"}>
           <Button title={"Queueing Model"} onClick={() => {}} />
         </Link>
       </div>
