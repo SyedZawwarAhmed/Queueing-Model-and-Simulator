@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "../../globalStyles.css";
 import Input from "../../components/Input";
@@ -15,8 +15,7 @@ import Button from "../../components/Button";
 import Table from "../../components/Table";
 import Title from "../../components/Title";
 import PerformanceMeasures from "../../components/PerformanceMeasures";
-import GanttChart from "../../components/GanttChart";
-import Loader from "../../components/Loader/Index";
+import Loader from "../../components/Loader";
 import AveragePerformanceMeasures from "../../components/AveragePerformanceMeasures";
 
 function Simulator() {
@@ -123,7 +122,7 @@ function Simulator() {
               {" "}
               <PerformanceMeasures data={simData} />{" "}
               <Button
-                title="Re evaluate"
+                title="Replicate"
                 onClick={() => {
                   setShowAveragePerformanceMeasures(true)
                   setIsLoading(true);
@@ -163,7 +162,7 @@ function Simulator() {
               averageTurnAroundTimeList={averageTurnAroundTimeList}
             />
           ) : null}
-          {simData.length ? (<GanttChart data={simData} />) : null}
+          {/* {simData.length ? (<GanttChart data={simData} />) : null} */}
         </>
       )}
     </div>
