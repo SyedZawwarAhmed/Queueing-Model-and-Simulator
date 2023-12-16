@@ -4,6 +4,7 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { Model } from "../../constants/enums";
 import Title from "../../components/Title";
+import Loader from "../../components/Loader";
 import {
   calculateMM1,
   calculateMMC,
@@ -13,7 +14,6 @@ import {
   calculateGGC,
 } from "../../modules/queueingModel/utils";
 import QueuingTable from "../../components/QueueingTable";
-import Loader from "../../components/Loader/Index";
 
 function QueueingModel() {
   const location = useLocation();
