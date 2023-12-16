@@ -137,8 +137,8 @@ function Simulator() {
                         serviceTimes[i]
                       )
                   );
-                  // serve_highest_priority_patient(patients);
-                  // setSimData(patients);
+                  serve_highest_priority_patient(patients);
+                  setSimData(patients);
                   setAverageWaitTimeList([
                     ...averageWaitTimeList,
                     averageWaitTime,
