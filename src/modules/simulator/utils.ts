@@ -18,7 +18,7 @@ export function getArrivalTimes(
   let cumulativeProbability = 0;
   const cumulativeProbabilities: number[] = [];
   let x = 0;
-  while (cumulativeProbability < 1.0) {
+  while (toFixed(cumulativeProbability, 4) < 1) {
     const newValue =
       (Math.exp(-meanArrivalNumber) * Math.pow(meanArrivalNumber, x)) /
       factorial(x);

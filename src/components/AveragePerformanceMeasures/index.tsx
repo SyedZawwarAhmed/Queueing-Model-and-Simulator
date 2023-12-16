@@ -15,7 +15,7 @@ function AveragePerformanceMeasures ({averageTurnAroundTimeList, averageResponse
             Average Turn Around Time
           </th>
           <th className="px-6 py-3 text-white font-bold uppercase text-sm">
-            Average Turn Around Time
+            Average Response Time
           </th>
           <th className="pri-server px-6 py-3 text-white font-bold uppercase text-sm">
             Average Wait Time
