@@ -17,7 +17,6 @@ import Title from "../../components/Title";
 import PerformanceMeasures from "../../components/PerformanceMeasures";
 import Loader from "../../components/Loader";
 import AveragePerformanceMeasures from "../../components/AveragePerformanceMeasures";
-import GanttChart from "../../components/GanttChart";
 
 function Simulator() {
   const location = useLocation();
@@ -25,7 +24,7 @@ function Simulator() {
 
   const [arrivalMean, setArrivalMean] = useState();
   const [serviceMean, setServiceMean] = useState();
-  const [numberOfServers, setNumberOfServers] = useState();
+  const [ setNumberOfServers] = useState();
   const [simData, setSimData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -162,7 +161,7 @@ function Simulator() {
               averageTurnAroundTimeList={averageTurnAroundTimeList}
             />
           ) : null}
-          {simData.length ? (<GanttChart simulationData={simData} />) : null}
+          {/* {simData.length ? (<GanttChart simulationData={simData} />) : null} */}
         </>
       )}
     </div>
