@@ -2,7 +2,7 @@ import React from 'react'
 
 function Title({children}) {
   return (
-    <h1 className="m-10">{children}</h1>
+    <h1 className="m-10 text-white">{children}</h1>
   )
 }
 

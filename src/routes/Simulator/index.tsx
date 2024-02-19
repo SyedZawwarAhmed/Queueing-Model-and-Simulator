@@ -17,6 +17,7 @@ import Title from "../../components/Title";
 import PerformanceMeasures from "../../components/PerformanceMeasures";
 import Loader from "../../components/Loader";
 import AveragePerformanceMeasures from "../../components/AveragePerformanceMeasures";
+import GanttChart from "../../components/GanttChart";
 
 function Simulator() {
   const location = useLocation();
@@ -68,9 +69,8 @@ function Simulator() {
 
   return (
     <div className="container">
-      <Title>{`${model} with${
-        !isPriorityEnabled ? "out" : ""
-      } Priority`}</Title>
+      <Title>{`${model} with${!isPriorityEnabled ? "out" : ""
+        } Priority`}</Title>
       <div style={{ display: "flex" }}>
         <Input label="Arrival Mean" setValue={setArrivalMean} />
 
@@ -162,7 +162,7 @@ function Simulator() {
               averageTurnAroundTimeList={averageTurnAroundTimeList}
             />
           ) : null}
-          {/* {simData.length ? (<GanttChart data={simData} />) : null} */}
+          {simData.length ? (<GanttChart simulationData={simData} />) : null}
         </>
       )}
     </div>

@@ -12,7 +12,7 @@ function Input({ label, setValue }) {
 
   return (
     <div style={{ margin: "1rem",  }}>
-      <h2>{label}</h2>
+      <h2 className="text-white">{label}</h2>
       <input
         style={{ fontSize: "2rem", padding: "1rem",background: "#c1c1c1", color: '#000000' }}
         type="number"

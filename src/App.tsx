@@ -6,8 +6,8 @@ import "./globalStyles.css";
 function App() {
   return (
     <div className="container">
-      <h1 className="mb-10" style={{fontSize: "5rem"}}>Eye Clinic Simulator</h1>
-      <h2 className="mb-10 text-xl">Submitted to Respected Dr. Shaista Rais</h2>
+      <h1 className="mb-10 text-white" style={{fontSize: "5rem"}}>Eye Clinic Simulator</h1>
+      <h2 className="mb-10 text-xl text-white">Submitted to Respected Dr. Shaista Rais</h2>
       <div>
         <Link to={"/select-simulation-model"}>
           <Button title={"Simulator"} onClick={() => {}} />

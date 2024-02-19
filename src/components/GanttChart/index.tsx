@@ -1,79 +1,45 @@
-import React, { Component } from 'react';
-import Chart from 'react-google-charts';
+import React from 'react';
+import Plot from 'react-plotly.js';
 
-const ganttChartData = [
-  [
-    { type: 'string', label: 'Task ID' },
-    { type: 'string', label: 'Task Name' },
-    { type: 'date', label: 'Start Date' },
-    { type: 'date', label: 'End Date' },
-    { type: 'number', label: 'Duration' },
-    { type: 'number', label: 'Percent Complete' },
-    { type: 'string', label: 'Dependencies' },
-  ],
-  [
-    'Research',
-    'Find sources',
-    new Date(2015, 0, 1),
-    new Date(2015, 0, 5),
-    null,
-    100,
-    null,
-  ],
-  [
-    'Write',
-    'Write paper',
-    null,
-    new Date(2015, 0, 9),
-    3 * 24 * 60 * 60 * 1000,
-    25,
-    'Research,Outline',
-  ],
-  [
-    'Cite',
-    'Create bibliography',
-    null,
-    new Date(2015, 0, 7),
-    1 * 24 * 60 * 60 * 1000,
-    20,
-    'Research',
-  ],
-  [
-    'Complete',
-    'Hand in paper',
-    null,
-    new Date(2015, 0, 10),
-    1 * 24 * 60 * 60 * 1000,
-    0,
-    'Cite,Write',
-  ],
-  [
-    'Outline',
-    'Outline paper',
-    null,
-    new Date(2015, 0, 6),
-    1 * 24 * 60 * 60 * 1000,
-    100,
-    'Research',
-  ],
-];
+const GanttChart: React.FC = ({simulationData}) => {
+  const patientList = [
+    // Add your patient data here
+    // Example: { patiend_id: '1', start_times: [1, 2, 3], end_times: [2, 3, 4] }
+  ];
+  
+  console.log("🚀 ~ file: index.tsx:40 ~ simulationData:", simulationData)
+  const data = simulationData.flatMap((patient, index) => {
+    return patient.start_times.map((startTime, i) => {
+      return {
+        x: [startTime, patient.end_times[i]],
+        y: [patient.patient_id],
+        type: 'bar',
+        orientation: 'h',
+        name: `Patient ${patient.patient_id}`,
+        marker: { color: index },
+        hoverinfo: 'x',
+        showlegend: i === 0,
+      };
+    });
+  });
+  console.log("🚀 ~ file: index.tsx:24 ~ data ~ data:", data)
 
-function GanttChart () {
-  
-    return (
-      <div className="container mt-5">
-        <h2>React Gantt Chart Example</h2>
-        <Chart
-          width={'1200px'}
-          height={'px'}
-          chartType="Gantt"
-          loader={<div>Loading Chart</div>}
-          data={ganttChartData}
-          rootProps={{ 'data-testid': '1' }}
-        />
-      </div>
-    );
-  
-}
+  const layout = {
+    barmode: 'stack',
+    title: 'Gantt Chart',
+    // groupTasks: true,
+    yaxis: {
+      autorange: 'reversed',
+      title: 'Patients',
+    },
+    xaxis: {
+      title: 'Time Passed (seconds)',
+    },
+    width: 1200, 
+    height: 600,
+  };
+
+  return <Plot data={data} layout={layout} />;
+};
 
 export default GanttChart;
